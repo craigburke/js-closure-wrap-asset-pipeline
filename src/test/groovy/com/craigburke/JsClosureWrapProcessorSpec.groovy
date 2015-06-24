@@ -9,12 +9,12 @@ import spock.lang.Unroll
 
 class JsClosureWrapProcessorSpec  extends Specification {
 
-    @Shared
-    AssetFile assetFile
-
-    def setup() {
+	@Shared
+	AssetFile assetFile
+	
+	def setup() {
 		assetFile = new GenericAssetFile(path: 'foo/bar.js')
-    }
+	}
 	
 	@Unroll("Wrapping JS: #input")
 	def "process HTML input"() {

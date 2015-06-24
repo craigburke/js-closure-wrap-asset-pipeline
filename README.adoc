@@ -1,0 +1,42 @@
+:version: 1.0.0
+= Js Closure Wrap Asset-Pipeline
+
+The `js-closure-wrap-asset-pipeline` is an https://github.com/bertramdev/asset-pipeline-core[Asset Pipeline] module that wraps javascript files in immediately executing anonymous closures to prevent variables being defined in the global scope.
+
+== Getting Started
+
+=== Gradle / Grails 3
+
+[source,groovy,subs='attributes']
+.build.gradle
+----
+buildscript {
+    dependencies {
+        classpath 'com.bertramlabs.plugins:asset-pipeline-gradle:2.0.20'
+        classpath "com.craigburke:js-closure-wrap-asset-pipelin:{version}"
+    }
+}
+dependencies {
+    compile "com.craigburke:js-closure-wrap-asset-pipelin:{version}"
+}
+----
+
+Make sure the dependency is specified in both the buildscript and dependencies blocks.
+
+== How it Works
+
+This plugin will take a JavaScript file that looks like this:
+[source,javascript]
+----
+var foo = 'Bar';
+console.log(foo);
+----
+
+And will wrap it in a closure like this:
+[source,javascript]
+----
+(function() {
+    var foo = 'Bar';
+    console.log(foo);
+})();
+----
