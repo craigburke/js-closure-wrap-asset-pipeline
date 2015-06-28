@@ -8,7 +8,12 @@ public class JsClosureWrapProcessor {
 	public JsClosureWrapProcessor(AssetCompiler precompiler) {}
 	
 	public String process(String input, AssetFile assetFile) {
-		return "(function(){\n" + input + "\n})();";
+		if (assetFile.getMatchedDirectives().contains("wrapped")) {
+			return "(function(){\n" + input + "\n})();";
+		}
+		else {
+			return input;
+		}
 	}
 
 }
